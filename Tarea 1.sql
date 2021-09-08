@@ -1,5 +1,3 @@
-select * from suppliers s limit 30;
-
 --1. Qué contactos de proveedores tienen la posición de sales representative?
 select s.company_name,s.contact_name, s.contact_title from suppliers s where s.contact_title='Sales Representative';
 
@@ -34,8 +32,10 @@ and o.ship_country!='Venezuela'
 ;
 
 --8. Necesitamos los nombres completos de los empleados, nombres y apellidos unidos en un mismo registro
-
+select concat(e.first_name, ' ', e.last_name) as "full_name" from employees e;
 
 --9. Cuánta lana tenemos en inventario?
+select sum(od.unit_price*od.quantity-od.discount*od.unit_price*od.quantity) from order_details od;
 
 --10. Cuantos clientes tenemos de cada país?
+select country, count(customer_id) from customers group by country order by country;
